@@ -8,18 +8,17 @@ typedef struct node{
 
 void initList(List *L);
 void insertFirst(List *L, char data);
+void display(List L);
 
 int main(){
     List elemList;
     
     initList(&elemList);
-    insertNode(&elemList, 'U');
-    insertNode(&elemList, 'S');
-    insertNode(&elemList, 'C');
+    insertFirst(&elemList, 'U');
+    insertFirst(&elemList, 'S');
+    insertFirst(&elemList, 'C');
 
-    printf("%c", elemList->elem);
-    printf("%c", elemList->next->elem);
-    printf("%c", elemList->next->next->elem);
+    display(elemList);
 
     free(elemList);
     return 0;
@@ -28,7 +27,6 @@ int main(){
 void initList(List *L){
     *L = NULL;
 }
-
 
 void insertFirst(List *L, char data){
     List newNode = malloc(sizeof(Node));
@@ -41,4 +39,15 @@ void insertFirst(List *L, char data){
         newNode->next = *L;
         *L = newNode;
     }
+}
+
+void display(List L){
+    List trav = L;
+
+    while (trav != NULL)
+    {
+        printf("%c\n", trav->elem);
+        trav = trav->next;
+    }
+    
 }
