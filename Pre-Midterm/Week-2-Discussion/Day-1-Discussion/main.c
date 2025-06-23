@@ -21,5 +21,9 @@ typedef struct {
     int cnt;
 }List;
 
-
+bool findElem(List A, char first[]){
+    NodePtr trav;
+    for(trav = A.ptr; trav != NULL && strcmp(trav->name.FName,first) != 0; trav = trav->next){}
+    return (trav != NULL)? true : false;
+}
 
