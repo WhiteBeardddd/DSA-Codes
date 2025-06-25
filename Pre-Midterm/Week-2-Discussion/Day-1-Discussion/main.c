@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+
 #define MAX 24
 
 typedef char string[MAX];
@@ -21,6 +23,7 @@ typedef struct {
     int cnt;
 }List;
 
+bool findElem(List A, char first[]);
 bool findElem(List A, char first[]){
     NodePtr trav;
     for(trav = A.ptr; trav != NULL && strcmp(trav->name.FName,first) != 0; trav = trav->next){}

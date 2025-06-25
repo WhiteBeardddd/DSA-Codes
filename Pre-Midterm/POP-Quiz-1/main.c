@@ -32,34 +32,30 @@ int main() {
     myList.ptr = NULL;
     myList.cnt = 0;
 
-    // Manually allocate and assign nodes
     NodeType *n1 = malloc(sizeof(NodeType));
     NodeType *n2 = malloc(sizeof(NodeType));
     NodeType *n3 = malloc(sizeof(NodeType));
 
-    strcpy(n1->name.FName, "John");
-    strcpy(n1->name.LName, "Doe");
-    n1->name.MI = 'A';
+    strcpy(n1->name.FName, "Ivan Kyer");
+    strcpy(n1->name.LName, "Jayme");
+    n1->name.MI = 'C';
     n1->next = n2;
 
-    strcpy(n2->name.FName, "Alice");
-    strcpy(n2->name.LName, "Smith");
-    n2->name.MI = 'B';
+    strcpy(n2->name.FName, "Godwin");
+    strcpy(n2->name.LName, "Monserate");
+    n2->name.MI = 'S';
     n2->next = n3;
 
-    strcpy(n3->name.FName, "Charlie");
-    strcpy(n3->name.LName, "Brown");
-    n3->name.MI = 'C';
+    strcpy(n3->name.FName, "Charles");
+    strcpy(n3->name.LName, "Boki");
+    n3->name.MI = 'G';
     n3->next = NULL;
 
     myList.ptr = n1;
-    myList.cnt = 3;
 
-    // Sample search calls
-    printf("Searching for 'Alice': %s\n", findElem(myList, "Alice") ? "Found" : "Not Found");
-    printf("Searching for 'Bob': %s\n", findElem(myList, "Bob") ? "Found" : "Not Found");
+    printf("%s\n", findElem(myList, "Godwin") ? "Found" : "Not Found");
+    printf("%s\n", findElem(myList, "Gran") ? "Found" : "Not Found");
 
-    // Free memory
     free(n1);
     free(n2);
     free(n3);
