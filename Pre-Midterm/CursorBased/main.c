@@ -10,7 +10,7 @@ typedef struct{
     int Avail;
 }VirtualHeap;
 
-typedef int L;
+typedef int CurList;
 
 int allocSpace(VirtualHeap *VH);
 void deallocSpace(VirtualHeap *VH, int index);
@@ -42,6 +42,33 @@ void initLIST(VirtualHeap *VH){
     }
 }
 
+void displayList(VirtualHeap VH, CurList X){
+    CurList trav;
+    for(trav = X; trav != -1; VH.Nodes[trav].link){
+        print("%c", VH.Nodes[trav].data);
+    }
+}
+
+void insertFirst(VirtualHeap *VH, CurList *X, char data){
+    CurList temp = allocSpace(VH);
+    if (temp != -1){
+        VH->Nodes[temp].data = data;
+        VH->Nodes[temp].link = *X;
+        *X = temp;
+    }
+}
+
+void insertLast(VirtualHeap *VH, CurList *L, char data){
+    int *trav, temp;
+    for(trav = L; *trav != -1; trav = &VH->Nodes[*trav].link){}
+    temp = allocSpace(VH);
+
+    if(temp != -1){
+        VH->Nodes[temp].data = data;
+        VH->Nodes[temp].link = -1;
+        *trav = temp;
+    }
+}
 
 // initLIST(). The function will initialize the List to be empty.
 // insertFirst(). The function will insert element x at the first position of the List L.
