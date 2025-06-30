@@ -14,3 +14,9 @@ typedef struct{
     NodeType Nodes[MAX];
     int Avail;
 }VirtualHeap;
+
+
+int main(){
+    
+    return 0;
+}
