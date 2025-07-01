@@ -44,6 +44,33 @@ void insertFirst(VirtualHeap *VH, CurList *x, char data){
         *x = temp;
     }
 }
+
+void insertLast(LinkList L, char data){
+    LinkList temp = malloc(sizeof(struct node));
+    for(;L != NULL; L = L->link){}
+    temp->data = data;
+    temp->link = L;
+    L = temp;
+}
+
+
+
+void insertLast(VirtualHeap *VH, CurList *x, char data){
+    int temp = allocSpace(VH);
+    if(temp != -1){
+        VH->Nodes[temp].data = data;
+        VH->Nodes[temp].link = -1;
+    }
+        if(*x == -1){
+            *x = temp;
+        } else {
+            int trav;
+            for(trav = *x; VH->Nodes[trav].link != -1; trav = VH->Nodes[trav].link){}
+            VH->Nodes[trav].link = temp; // sets the previous last node's link to the new node
+        }
+}
+
+
 // void displayList(VirtualHeap VH, CurList X){
 //     if(X != -1){
 //         for( ; X != -1; X = VH.Nodes[X].link){
