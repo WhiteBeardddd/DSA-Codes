@@ -1,7 +1,14 @@
+#include <stdio.h>
 #define MAX 7
 
+typedef struct {
+    char FName[24];
+    char LName[16];
+    char MI;
+}NameType;
+
 typedef struct{
-    char data;
+    NameType data;
     int link;
 }NodeType;
 
@@ -15,6 +22,7 @@ typedef int CurList;
 int allocSpace(VirtualHeap *VH);
 void deallocSpace(VirtualHeap *VH, int index);
 void initLIST(VirtualHeap *VH); 
+
 
 int main(){
 
@@ -49,7 +57,7 @@ void displayList(VirtualHeap VH, CurList X){
     }
 }
 
-void insertFirst(VirtualHeap *VH, CurList *X, char data){
+void insertFirst(VirtualHeap *VH, CurList *X, NameType data){
     CurList temp = allocSpace(VH);
     if (temp != -1){
         VH->Nodes[temp].data = data;
@@ -58,7 +66,7 @@ void insertFirst(VirtualHeap *VH, CurList *X, char data){
     }
 }
 
-void insertLast(VirtualHeap *VH, CurList *L, char data){
+void insertLast(VirtualHeap *VH, CurList *L, NameType data){
     int *trav, temp;
     for(trav = L; *trav != -1; trav = &VH->Nodes[*trav].link){}
     temp = allocSpace(VH);
