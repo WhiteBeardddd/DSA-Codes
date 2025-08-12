@@ -19,5 +19,7 @@ int main() {
     // Toggle the 2nd bit
     bitVector ^= (1 << 2);
 
+    printf("%c", bitVector);
+
     return 0;
 }
