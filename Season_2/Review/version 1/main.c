@@ -1,4 +1,3 @@
-// Online C compiler to run C program online
 #include <stdio.h>
 #define SIZE 10
 
@@ -28,6 +27,8 @@ void delete(charList *L, char x){
                 break;
             }
         }    
+    }else{
+        printf("List is empty");
     }
 }
 
@@ -60,7 +61,7 @@ int main() {
     display(list);
     
     printf("\n");
-    printf("Delete Middle: ");
+    printf("Delete Last: ");
     delete(&list, 'z'); // deletes z if it exist
     display(list);
     
