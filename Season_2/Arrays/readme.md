@@ -21,7 +21,10 @@ typedef struct {
     int count;
 } Version_One;
 ```
-![Alt text for image](Version_1.png)
+<p align="center">
+  <img src="Version_1.png" alt="List Array Version 1" width="500"/>
+</p>
+
 
 **Key points:**
 - Array size is fixed at compile time.
