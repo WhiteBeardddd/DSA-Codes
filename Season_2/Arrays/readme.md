@@ -22,7 +22,7 @@ typedef struct {
 } Version_One;
 ```
 <p align="center">
-  <img src="Version_1.JPG" alt="List Array Version 1" width="500"/>
+  <img src="Version_1.JPG" alt="List Array Version 1" width="1000"/>
 </p>
 
 
