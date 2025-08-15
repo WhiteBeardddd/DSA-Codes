@@ -18,15 +18,33 @@ void initList(charList *L){
 
 void delete(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
-        for(int i = 0; i < L->count; i++){ // to find x
+        int i;
+        for(i = 0; i < L->count && L->elem[i] != x; i++){}
+        if(i < L->count){
+            L->count--;
+            for(; i < L->count; i++){
+                L->elem[i] = L->elem[i + 1];
+            }
+        }else{
+            printf("element does not exist!");
+        }
+    }else{
+        printf("List is empty");
+    }
+}
+
+void deleteAllOccurance(charList *L, char x){
+    if(L->count != 0){ // Checks if List is not Empty
+        for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){
-                for(int j = i; j < L->count; j++){ // to shift starting from x
-                    L->elem[j] = L->elem[j + 1]; // shifting
+                for(int j = i; j < L->count - 1; j++){
+                    L->elem[j] = L->elem[j + 1];
                 }
                 L->count--;
-                break;
+                i--;
             }
-        }    
+        }
+            // printf("element does not exist!");
     }else{
         printf("List is empty");
     }
@@ -45,26 +63,31 @@ void display(charList L){
 }
 
 int main() {
-    charList list = {"Clarencz", 9};
+    charList list = {"Nigger", 6};
     
     printf("Original List: ");
     display(list);
     
     printf("\n");
     printf("Delete First: ");
-    delete(&list, 'C'); // deletes C if it exist
+    deleteAllOccurance(&list, 'g'); // deletes C if it exist
     display(list);
+    // printf("\n");
+    // printf("Delete Middle: ");
+    // delete(&list, 'e'); // deletes e if it exist
+    // display(list);
     
-    printf("\n");
-    printf("Delete Middle: ");
-    delete(&list, 'e'); // deletes e if it exist
-    display(list);
+    // printf("\n");
+    // printf("Delete Last: ");
+    // delete(&list, 'z'); // deletes z if it exist
+    // display(list);
     
-    printf("\n");
-    printf("Delete Last: ");
-    delete(&list, 'z'); // deletes z if it exist
-    display(list);
+    // printf("\n");
+    // printf("Does not Exist: ");
+    // delete(&list, 'V'); // deletes z if it exist
+    // printf("\n");
+    // display(list);
     
-    
+
     return 0;
 }
