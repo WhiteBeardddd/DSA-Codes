@@ -13,7 +13,7 @@ Each version differs in whether the **list** is a structure, a pointer to a stru
 
 ```c
 typedef struct {
-    int data;
+    char data;
 } Element;
 
 typedef struct {
@@ -21,6 +21,7 @@ typedef struct {
     int count;
 } Version_One;
 ```
+![Alt text for image](Version_1.png)
 
 **Key points:**
 - Array size is fixed at compile time.
@@ -38,7 +39,7 @@ typedef struct {
 
 ```c
 typedef struct {
-    int data;
+    char data;
 } Element;
 
 typedef struct node {
@@ -62,7 +63,7 @@ typedef struct node {
 
 ```c
 typedef struct {
-    int data;
+    char data;
 } Element;
 
 typedef struct {
@@ -86,7 +87,7 @@ typedef struct {
 
 ```c
 typedef struct {
-    int data;
+    char data;
 } Element;
 
 typedef struct node {
