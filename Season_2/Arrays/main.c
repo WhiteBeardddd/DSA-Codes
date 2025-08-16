@@ -8,15 +8,14 @@ typedef struct{
 }charList;
 
 void initList(charList *L);
-void delete(charList *L, char x);
+void deleteFirstOccurance(charList *L, char x);
 void display(charList L);
-
 
 void initList(charList *L){
     L->count = 0; // initializes List
 }
 
-void delete(charList *L, char x){
+void deleteFirstOccurance(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
         int i;
         for(i = 0; i < L->count && L->elem[i] != x; i++){}
@@ -50,6 +49,21 @@ void deleteAllOccurance(charList *L, char x){
     }
 }
 
+void insertFirst(charList *L, char x);
+void insertFirst(charList *L, char x){
+    if(L->count != 0 && L->count < SIZE){
+        for(int i = 0;i < L->count; i ++){
+            L->elem[L->count - 1] = L->elem[L->count];
+        }
+        L->count++;
+    }else{
+        L->elem[0] =  x;
+    }
+}
+void insertMiddle();
+void insertLast();
+void locate();
+
 void display(charList L){
     if(L.count != 0){
         for(int i = 0; i < L.count; i++){
@@ -72,6 +86,7 @@ int main() {
     printf("Delete First: ");
     deleteAllOccurance(&list, 'g'); // deletes C if it exist
     display(list);
+
     // printf("\n");
     // printf("Delete Middle: ");
     // delete(&list, 'e'); // deletes e if it exist

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #define SIZE 10
 
-// version 1
 typedef struct{
     char elem[SIZE];
     int count;
