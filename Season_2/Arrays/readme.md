@@ -1,11 +1,11 @@
 # List Array Implementation
 
 This document explains four variations of implementing a list using arrays in C.  
-Each version differs in whether the **list** is a structure, a pointer to a structure, or whether it stores a **static array** or a **dynamic array**.
+Each version differs in whether the **List** is a structure, a pointer to a structure, or whether it stores a **static array** or a **dynamic array**.
 
 ---
 
-## **Version-1**  
+## **Version One**  
 **Definition:**  
 `List` is a **structure** containing:  
 - A **fixed-size array** of `Element`  
@@ -33,7 +33,7 @@ charList List;
 
 ---
 
-## **Version-2**  
+## **Version Two**  
 **Definition:**  
 `List` is a **pointer to a structure** containing:  
 - A **fixed-size array** of `Element`  
@@ -60,7 +60,7 @@ charList *List;
 
 ---
 
-## **Version-3**  
+## **Version Three**  
 **Definition:**  
 `List` is a **structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
@@ -87,7 +87,7 @@ charList List;
 
 ---
 
-## **Version-4**  
+## **Version Four**  
 **Definition:**  
 `List` is a **pointer to a structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
