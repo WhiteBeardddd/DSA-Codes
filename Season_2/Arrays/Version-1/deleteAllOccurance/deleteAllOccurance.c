@@ -1,4 +1,3 @@
-#include <stdio.h>
 #define SIZE 10
 
 typedef struct{
@@ -6,21 +5,20 @@ typedef struct{
     int count;
 }charList;
 
+// Deletes all occurrences of a given element x in the list
 void deleteAllOccurance(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
-        int flag = L->count; // flag for checking if the element exist
         for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){
+                // Shift elements left to overwrite the found element
                 for(int j = i; j < L->count - 1; j++){
                     L->elem[j] = L->elem[j + 1];
                 }
-                L->count--;
-                i--;
+                L->count--; // reduce list size
+                i--; // recheck current index (since it has new value)
             }
         }
-        if(flag == L->count){
-            printf("element does not exist");
-        }
+            // printf("element does not exist!");
     }else{
         printf("List is empty");
     }

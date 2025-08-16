@@ -7,7 +7,7 @@ Each version differs in whether the **list** is a structure, a pointer to a stru
 
 ## **Version One**  
 **Definition:**  
-`list` is a **structure** containing:  
+`List` is a **structure** containing:  
 - A **fixed-size array** of `Element`  
 - An integer `count` to track the number of elements.
 
@@ -19,12 +19,11 @@ typedef struct {
 typedef struct {
     Element Elements[MAX];
     int count;
-} Version_One;
-```
-<p align="center">
-  <img src="Version_1.JPG" alt="List Array Version 1" width="1000"/>
-</p>
+} charList;
 
+charList List;
+```
+<p align="center"><img src="Version_1.JPG" alt="List Array Version 1" width="1000"/></p>
 
 **Key points:**
 - Array size is fixed at compile time.
@@ -36,7 +35,7 @@ typedef struct {
 
 ## **Version Two**  
 **Definition:**  
-`list` is a **pointer to a structure** containing:  
+`List` is a **pointer to a structure** containing:  
 - A **fixed-size array** of `Element`  
 - An integer `count`.
 
@@ -48,8 +47,11 @@ typedef struct {
 typedef struct node {
     Element Elements[MAX];
     int count;
-} Version_Two;
+} charList;
+
+charList *List;
 ```
+<p align="center"><img src="Version_2.JPG" alt="List Array Version 2" width="1000"/></p>
 
 **Key points:**
 - Similar to Version One, but accessed via a pointer.
@@ -60,7 +62,7 @@ typedef struct node {
 
 ## **Version Three**  
 **Definition:**  
-`list` is a **structure** containing:  
+`List` is a **structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
 - An integer `count`.
 
@@ -72,8 +74,11 @@ typedef struct {
 typedef struct {
     Element *Elements; // dynamically allocated
     int count;
-} Version_Three;
+} charList;
+
+charList List;
 ```
+<p align="center"><img src="Version_3.JPG" alt="List Array Version 2" width="1000"/></p>
 
 **Key points:**
 - Allows resizing the array at runtime using `malloc` / `realloc`.
@@ -84,7 +89,7 @@ typedef struct {
 
 ## **Version Four**  
 **Definition:**  
-`list` is a **pointer to a structure** containing:  
+`List` is a **pointer to a structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
 - An integer `count`.
 
@@ -96,8 +101,11 @@ typedef struct {
 typedef struct node {
     Element *Elements; // dynamically allocated
     int count;
-} Version_Four;
+} charList;
+
+charList *List;
 ```
+<p align="center"><img src="Version_4.JPG" alt="List Array Version 2" width="1000"/></p>
 
 **Key points:**
 - Combines pointer-to-struct access with a dynamic array.
