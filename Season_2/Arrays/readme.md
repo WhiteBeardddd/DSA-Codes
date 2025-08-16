@@ -5,7 +5,7 @@ Each version differs in whether the **list** is a structure, a pointer to a stru
 
 ---
 
-## **Version One**  
+## **Version-1**  
 **Definition:**  
 `List` is a **structure** containing:  
 - A **fixed-size array** of `Element`  
@@ -33,7 +33,7 @@ charList List;
 
 ---
 
-## **Version Two**  
+## **Version-2**  
 **Definition:**  
 `List` is a **pointer to a structure** containing:  
 - A **fixed-size array** of `Element`  
@@ -60,7 +60,7 @@ charList *List;
 
 ---
 
-## **Version Three**  
+## **Version-3**  
 **Definition:**  
 `List` is a **structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
@@ -87,7 +87,7 @@ charList List;
 
 ---
 
-## **Version Four**  
+## **Version-4**  
 **Definition:**  
 `List` is a **pointer to a structure** containing:  
 - A **pointer** to the first element of a **dynamic array**  
