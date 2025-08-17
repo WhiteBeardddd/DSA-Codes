@@ -7,7 +7,7 @@ void initList(charList *L){
 }
 
 // Deletes the first occurrence of a given element x in the list
-void deleteFirstOccurance(charList *L, char x){
+void deleteFirstOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
         int i;
         // Search for the element x in the list
@@ -30,7 +30,7 @@ void deleteFirstOccurance(charList *L, char x){
 }
 
 // Deletes all occurrences of a given element x in the list
-void deleteAllOccurance(charList *L, char x){
+void deleteAllOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
         for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){

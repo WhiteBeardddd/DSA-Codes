@@ -6,7 +6,7 @@ typedef struct{
 }charList;
 
 // Deletes all occurrences of a given element x in the list
-void deleteAllOccurance(charList *L, char x){
+void deleteAllOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
         for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){

@@ -13,7 +13,6 @@ typedef struct {
 void initList(charList *L);
 void display(charList L);
 
-
 // Main Functions prototypes
 // B - 1
 bool findElem(charList list, char X);
@@ -101,8 +100,6 @@ void display(charList L){
     }
 }
 
-
-
 int main(){
     charList List = {"USCTC", 5};
     char X = 'C';
@@ -122,8 +119,6 @@ int main(){
     // D - 2
     deleteAllOccur(&List, X);
     display(List);
-
-
 
     return 0;
 }

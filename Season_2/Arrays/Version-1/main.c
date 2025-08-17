@@ -14,7 +14,7 @@ int main() {
     display(list);
 
     printf("Delete all 'B': ");
-    deleteAllOccurance(&list, 'B');
+    deleteAllOccurence(&list, 'B');
     display(list);
 
     return 0;

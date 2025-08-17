@@ -6,7 +6,7 @@ typedef struct{
 }charList;
 
 // Deletes the first occurrence of a given element x in the list
-void deleteFirstOccurance(charList *L, char x){
+void deleteFirstOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
         int i;
         // Search for the element x in the list

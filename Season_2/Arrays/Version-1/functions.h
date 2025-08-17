@@ -11,8 +11,8 @@ typedef struct {
 
 // Function prototypes
 void initList(charList *L);
-void deleteFirstOccurance(charList *L, char x);
-void deleteAllOccurance(charList *L, char x);
+void deleteFirstOccurence(charList *L, char x);
+void deleteAllOccurence(charList *L, char x);
 void insertFirst(charList *L, char x);
 void insertMiddle(charList *L, char x);
 void insertLast(charList *L, char x);
