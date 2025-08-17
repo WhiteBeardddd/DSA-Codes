@@ -9,7 +9,7 @@ This exercise explores array representation, user-defined data types, and functi
 ## Illustration of Array Representation
 
 <p align="center">
-  <img src="Version_1.JPG" alt="List Array Version 1" width="1000"/>
+  <img src="image.png" alt="List Array Version 1" width="1000"/>
 </p>
 
 **Notation:**
