@@ -8,6 +8,7 @@
         "string_view": "c",
         "ranges": "c",
         "span": "c",
-        "functions.h": "c"
+        "functions.h": "c",
+        "system_error": "c"
     }
 }
