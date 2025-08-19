@@ -55,30 +55,48 @@ void deleteELem(charList *list, char X){
 
 // D - 4
 void deleteAllOccur(charList *list, char X){
-    if(list->count != 0){ // Checks if List is not Empty
-        bool found = false;
+    
+    // VERSION 1 //
+    // if(list->count != 0){ // Checks if List is not Empty
+    //     bool found = false;
 
-        for(int i = 0; i < list->count; i++){
-            // D - a
-            if(list->elem[i] == X){
-                // marks that X is found inside the List
-                found = true;
+    //     for(int i = 0; i < list->count; i++){
+    //         // D - a
+    //         if(list->elem[i] == X){
+    //             // marks that X is found inside the List
+    //             found = true;
+    //             // Shift elements left to overwrite the found element
+    //             for(int j = i; j < list->count - 1; j++){
+    //                 list->elem[j] = list->elem[j + 1];
+    //             }
+    //             list->count--; // reduce list size
+    //             i--; // recheck current index (since it has new value)
+    //         }
+    //     }
+    //     if(found == false){
+    //         printf("Element '%c' does not exist in the list!\n", X); // D - b
+    //     }
+    // }else{
+    //     printf("List is empty"); // D - c
+    // }
 
-                // Shift elements left to overwrite the found element
-                for(int j = i; j < list->count - 1; j++){
-                    list->elem[j] = list->elem[j + 1];
-                }
-                list->count--; // reduce list size
-                i--; // recheck current index (since it has new value)
-            }
-        }
-
-        if(found == false){
-            printf("Element '%c' does not exist in the list!\n", X); // D - b
-        }
-    }else{
-        printf("List is empty"); // D - c
-    }
+    // VERSION 2
+    // if(list->count != 0){
+    //     int i, j;
+    //     bool found = false;
+    //     for(i = j = 0; i < list->count; i++){
+    //         if(list->elem[i] != X){
+    //             list->elem[j] = list->elem[i];
+    //             j++;
+    //         }
+    //     }
+    //     list->count = j;
+    //     if(found == false){
+    //         printf("Element '%c' does not exist in the list!\n", X); // D - b
+    //     }
+    // }else{
+    //     printf("List is empty"); // D - c
+    // }
 }
 
 // helper functions
@@ -109,11 +127,10 @@ int main(){
     // B - 2
     bool isElem = findElem(List, X);
 
-
-    printf("After deleteElem:\n");
-    // C - 2
-    deleteELem(&List, X);
-    display(List);
+    // printf("After deleteElem:\n");
+    // // C - 2
+    // deleteELem(&List, X);
+    // display(List);
 
     printf("After deleteAllOccur:\n");
     // D - 2
