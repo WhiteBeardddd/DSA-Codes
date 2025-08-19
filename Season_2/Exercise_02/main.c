@@ -26,7 +26,7 @@ void insertFirst(charList *list, char X){
         newNode->link = *list;
         *list = newNode;
     }else{
-        printf("Memory Allocation failed");
+        printf("Memory Allocation failed\n");
     }
 }
 
@@ -36,9 +36,9 @@ void insertLast(charList *list, char X){
         charList *trav;
         for(trav = list; *trav != NULL; trav = &(*trav)->link){}
         // newNode->link = NULL;  // No need since it's done in insertLast
-        *list = newNode;
+        *trav = newNode;
     }else{
-        printf("Memory Allocation failed");
+        printf("Memory Allocation failedv");
     }
 }
 
@@ -47,10 +47,12 @@ void insertLastUnique(charList *list, char X){
     if(newNode != NULL){
         charList *trav;
         for(trav = list; *trav != NULL && (*trav)->elem != X; trav = &(*trav)->link){}
-        if(trav != NULL){
-            printf("Element Exist in the list, insert is invalid");
+        if(*trav != NULL){
+            printf("Element Exist in the list, insert is invalid\n");
+            free(newNode);
         }else{
-            *list = newNode;
+            // newNode->link = NULL;  // No need since it's done in insertLast
+            *trav = newNode;
         }
     }
 
@@ -66,10 +68,10 @@ void deleteElem(charList *list, char X){
             *trav = (*trav)->link;
             free(temp);
         }else{
-            printf("Element '%c' does not exist", X);
+            printf("Element '%c' does not exist\n", X);
         }
     }else{
-        printf("Nothing to delete List is empty");
+        printf("Nothing to delete List is empty\n");
     }
 }
 
@@ -86,7 +88,7 @@ void deleteAllOccur(charList *list, char X){
             }
         }
     }else{
-        printf("Nothing to delete List is empty");
+        printf("Nothing to delete List is empty\n");
     }
 }
 
@@ -104,6 +106,39 @@ charList createNode(char X){
     return (newNode != NULL)? newNode : NULL;
 }
 
+// void insertSorted(charList *list, char value) {
+
+//     charList newNode = malloc(sizeof(struct node));
+//     newNode->elem = value;
+//     newNode->link = NULL;
+
+//     charList *temp;
+//     for(temp = list; *temp != NULL && (*temp)->elem < value; temp = &(*temp)->link) {
+//         printf("1-");
+//     }
+//     newNode->link = *temp;
+//     *temp = newNode;
+
+// }
+
+// void sortList(charList *list) {
+
+//     charList *storeList = list;
+
+//     while(*storeList != NULL || (*storeList)->link != NULL) 
+//     {
+//         charList newNode = *storeList;
+
+//         for(charList *temp = storeList; *temp != NULL && (*temp)->elem > (*temp)->link->elem; temp = &(*temp)->link) {
+//             newNode->link = *temp;
+//             *temp = newNode;
+//         }
+//         storeList = &(*storeList)->link;
+//     }
+// }
+
+
+
 void display(charList list){
     if(list != NULL){
         for(;list != NULL; list = list->link){
@@ -119,12 +154,35 @@ int main(){
     init(&List);
 
     // make first, second, third
-    insertFirst(&List, 'U');
-    insertFirst(&List, 'S');
     insertFirst(&List, 'C');
+    insertFirst(&List, 'S');
+    insertFirst(&List, 'U');
+    printf("Original List\n");
+    display(List);
+    
+    printf("\n");
+    insertLastUnique(&List, 'C');
+    
+    insertLastUnique(&List, 'D');
+    
+    printf("Display 1: ");
+    display(List);
+    printf("\n");
 
     deleteElem(&List, 'S');
 
+    printf("Display 2: ");
+    display(List);
+
+    printf("\n");
+    sortList(&List);
+    printf("Display 3: ");
+    display(List);
+
+    printf("\n");
+    insertSorted(&List, 'E');
+    insertSorted(&List, 'Z');
+    printf("Display 4: ");
     display(List);
 
     return 0;
