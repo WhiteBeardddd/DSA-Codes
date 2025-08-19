@@ -93,6 +93,32 @@ void deleteAllOccur(charList *list, char X){
     }
 }
 
+
+void sortList(charList *list) {
+    charList sorted = NULL;
+    while (*list != NULL) {
+        charList current = *list;
+        *list = (*list)->link;
+        charList *trav = &sorted;
+        for (; *trav != NULL && (*trav)->elem < current->elem; trav = &(*trav)->link);
+        current->link = *trav;
+        *trav = current;
+    }
+    *list = sorted;
+}
+
+
+void insertSorted(charList *list, char X){
+    charList newNode = createNode(X);
+    if(newNode != NULL){
+        charList *trav;
+        for(trav = list; *trav != NULL && (*trav)->elem < X; trav = &(*trav)->link){}
+        newNode->link = *trav;
+        *trav = newNode;
+    }else{
+        printf("Memory Allocation Failed");
+    }
+}
 // Helper Functions
 void init(charList *list){
     *list = NULL;
@@ -105,47 +131,6 @@ charList createNode(char X){
         newNode->link = NULL;
     }
     return (newNode != NULL)? newNode : NULL;
-}
-
-// void insertSorted(charList *list, char value) {
-
-//     charList newNode = malloc(sizeof(struct node));
-//     newNode->elem = value;
-//     newNode->link = NULL;
-
-//     charList *temp;
-//     for(temp = list; *temp != NULL && (*temp)->elem < value; temp = &(*temp)->link) {
-//         printf("1-");
-//     }
-//     newNode->link = *temp;
-//     *temp = newNode;
-
-// }
-
-void sortList(charList *list) {
-    while(*list != NULL || (*list)->link != NULL)
-    {
-        charList *holdList = list;
-        for(charList *temp = (*list)->link; *temp != NULL; temp = &(*temp)->link) {
-            if((*holdList)->elem > (*temp)->elem){
-                holdList = *temp;
-            }
-        }
-
-        list = &(*list)->link;
-    }
-}
-
-void insertSorted(charList *list, char X){
-    charList newNode = createNode(X);
-    if(newNode != NULL){
-        charList *trav;
-        for(trav = list; *trav != NULL && (*trav)->elem < X; trav = &(*trav)->link){}
-        newNode->link = *trav;
-        *trav = newNode;
-    }else{
-        printf("Memory Allocation Failed");
-    }
 }
 
 void display(charList list){
@@ -192,6 +177,27 @@ int main(){
     insertSorted(&List, 'E');
     insertSorted(&List, 'Z');
     printf("Display 4: ");
+    display(List);
+
+    
+    insertFirst(&List, 'A');
+    insertFirst(&List, 'B');
+    insertFirst(&List, 'C');
+    
+    printf("\n");
+    printf("Display 5: ");
+    display(List);
+
+    
+    printf("\n");
+    printf("Display 5: ");
+    sortList(&List);
+    display(List);
+
+    
+    printf("\n");
+    printf("Display 5: ");
+    insertLast(&List, 'A');
     display(List);
 
     return 0;
