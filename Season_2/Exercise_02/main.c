@@ -12,7 +12,8 @@ void insertLast(charList *list, char X);
 void insertLastUnique(charList *list, char X);
 void deleteElem(charList *list, char X);
 void deleteAllOccur(charList *list, char X);
-
+void insertSorted(charList *list, char value);
+void sortList(charList *list);
 
 // Helper Function Prototypes
 void init(charList *list);
@@ -121,23 +122,31 @@ charList createNode(char X){
 
 // }
 
-// void sortList(charList *list) {
+void sortList(charList *list) {
+    while(*list != NULL || (*list)->link != NULL)
+    {
+        charList *holdList = list;
+        for(charList *temp = (*list)->link; *temp != NULL; temp = &(*temp)->link) {
+            if((*holdList)->elem > (*temp)->elem){
+                holdList = *temp;
+            }
+        }
 
-//     charList *storeList = list;
+        list = &(*list)->link;
+    }
+}
 
-//     while(*storeList != NULL || (*storeList)->link != NULL) 
-//     {
-//         charList newNode = *storeList;
-
-//         for(charList *temp = storeList; *temp != NULL && (*temp)->elem > (*temp)->link->elem; temp = &(*temp)->link) {
-//             newNode->link = *temp;
-//             *temp = newNode;
-//         }
-//         storeList = &(*storeList)->link;
-//     }
-// }
-
-
+void insertSorted(charList *list, char X){
+    charList newNode = createNode(X);
+    if(newNode != NULL){
+        charList *trav;
+        for(trav = list; *trav != NULL && (*trav)->elem < X; trav = &(*trav)->link){}
+        newNode->link = *trav;
+        *trav = newNode;
+    }else{
+        printf("Memory Allocation Failed");
+    }
+}
 
 void display(charList list){
     if(list != NULL){
