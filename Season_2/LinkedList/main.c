@@ -151,54 +151,20 @@ int main(){
     insertFirst(&List, 'C');
     insertFirst(&List, 'S');
     insertFirst(&List, 'U');
+    insertFirst(&List, 'V');
+    insertFirst(&List, 'E');
+    insertFirst(&List, 'O');
+    insertFirst(&List, 'N');
+    insertFirst(&List, 'Z');
+    insertFirst(&List, 'K');
     printf("Original List\n");
     display(List);
     
-    printf("\n");
-    insertLastUnique(&List, 'C');
-    
-    insertLastUnique(&List, 'D');
-    
-    printf("Display 1: ");
-    display(List);
-    printf("\n");
-
-    deleteElem(&List, 'S');
-
-    printf("Display 2: ");
-    display(List);
-
-    printf("\n");
-    sortList(&List);
-    printf("Display 3: ");
-    display(List);
-
-    printf("\n");
-    insertSorted(&List, 'E');
-    insertSorted(&List, 'Z');
-    printf("Display 4: ");
-    display(List);
-
-    
-    insertFirst(&List, 'A');
-    insertFirst(&List, 'B');
-    insertFirst(&List, 'C');
-    
-    printf("\n");
-    printf("Display 5: ");
-    display(List);
-
-    
-    printf("\n");
-    printf("Display 5: ");
+    printf("\nAfter Sortlint was called\n");
     sortList(&List);
     display(List);
-
     
-    printf("\n");
-    printf("Display 5: ");
-    insertLast(&List, 'A');
-    display(List);
+
 
     return 0;
 }
