@@ -9,7 +9,7 @@ You are required to write insertion and deletion operations for both implementat
 ## Data Type Definitions
 
 <p align="center">
-  <img src="image.png" alt="List Array Version 1" width="500"/>
+  <img src="image.png" alt="List Array Version 1" width="1000"/>
 </p>
 
 # Insert and Delete Operations
