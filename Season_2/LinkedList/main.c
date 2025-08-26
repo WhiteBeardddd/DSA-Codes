@@ -1,10 +1,7 @@
 #include <stdio.h>
-#include "functions.h"
+#include "functions.c"
 
-<<<<<<< HEAD
 // Main Functions
-=======
->>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 int main(){
     charList List;
     init(&List);
@@ -22,8 +19,12 @@ int main(){
     printf("Original List\n");
     display(List);
     
-    printf("\nAfter Sortlint was called\n");
+    printf("\nAfter Sortlint wsadsdas called\n");
     sortList(&List);
+    display(List);
+
+    printf("\n");
+    makenull(&List);
     display(List);
     
 

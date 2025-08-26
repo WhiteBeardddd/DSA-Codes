@@ -1,15 +1,7 @@
 #include <stdio.h>
-<<<<<<< HEAD
-#include <stdlib.h>
 #include "functions.h"
-
-
-=======
-#include "functions.h"
-
 
 // Main Functions
->>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 void insertFirst(charList *list, char X){
     charList newNode = createNode(X);
     if(newNode != NULL){
@@ -82,10 +74,6 @@ void deleteAllOccur(charList *list, char X){
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 void sortList(charList *list) {
     charList sorted = NULL;
     while (*list != NULL) {
@@ -98,7 +86,6 @@ void sortList(charList *list) {
     }
     *list = sorted;
 }
-
 
 void insertSorted(charList *list, char X){
     charList newNode = createNode(X);
@@ -116,6 +103,20 @@ void init(charList *list){
     *list = NULL;
 }
 
+void makenull(charList *List){
+    if(*List != NULL){
+        charList temp;
+        for(; *List != NULL;){
+            temp = *List;
+            *List = (*List)->link;
+            free(temp);
+        }
+        *List = NULL;
+    }else{
+        printf("List is empty");
+    }
+}
+
 charList createNode(char X){
     charList newNode = malloc(sizeof(struct node));
     if(newNode != NULL){
@@ -130,6 +131,7 @@ void display(charList list){
         for(;list != NULL; list = list->link){
             printf("%c ", list->elem);
         }
+        printf("\n");
     }else{
         printf("List is empty");
     }
