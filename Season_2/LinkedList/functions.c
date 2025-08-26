@@ -1,8 +1,15 @@
 #include <stdio.h>
+<<<<<<< HEAD
 #include <stdlib.h>
 #include "functions.h"
 
 
+=======
+#include "functions.h"
+
+
+// Main Functions
+>>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 void insertFirst(charList *list, char X){
     charList newNode = createNode(X);
     if(newNode != NULL){
@@ -75,7 +82,10 @@ void deleteAllOccur(charList *list, char X){
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 void sortList(charList *list) {
     charList sorted = NULL;
     while (*list != NULL) {

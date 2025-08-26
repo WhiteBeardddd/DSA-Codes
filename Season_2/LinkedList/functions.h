@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H 
+=======
+#include <stdio.h>
+#include <stdlib.h>
+>>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
 
 typedef struct node {
   char elem;
@@ -19,6 +24,9 @@ void sortList(charList *list);
 void init(charList *list);
 void display(charList list);
 charList createNode(char X);
+<<<<<<< HEAD
 
 
 #endif
+=======
+>>>>>>> 03894d1dd56a1c3bf92549bac1967ccf8bcba18c
