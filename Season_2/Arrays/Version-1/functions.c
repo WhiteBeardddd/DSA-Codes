@@ -6,6 +6,11 @@ void initList(charList *L){
     L->count = 0; // initializes List
 }
 
+// The same with initList sets the count to 0
+void makenull(charList *L){
+    L->count = 0; // reinitializes List
+}
+
 // Deletes the first occurrence of a given element x in the list
 void deleteFirstOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
@@ -43,6 +48,15 @@ void deleteAllOccurence(charList *L, char x){
             }
         }
             // printf("element does not exist!");
+    }else{
+        printf("List is empty");
+    }
+}
+
+// Deletes the Last element in the given List
+void deleteLast(charList *L){
+    if(L->count != 0){
+        L->count--;
     }else{
         printf("List is empty");
     }
