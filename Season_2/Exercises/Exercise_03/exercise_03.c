@@ -13,7 +13,7 @@ typedef struct {
 typedef struct{
     char ID[9];
     nametype name;
-    char course[8];
+    char course[10];
     int yrlevel;
 }studtype;
 
@@ -32,6 +32,7 @@ typedef struct cell{
 
 // Array Implementation
 void initAList(ArrayList *L);
+void displayAList(ArrayList L);
 void inserFirstArray(ArrayList *L, studtype newStud);
 void insertLastArray(ArrayList *L, studtype newStud);
 void insertLastUniqueArray(ArrayList *L, studtype newStud);
@@ -46,51 +47,67 @@ int main() {
     // Create some students
     studtype s1 = {"23100750", {"Charles Benedict", "Boquecosa", 'G'}, "CIS-2201", 4};
     studtype s2 = {"23100751", {"Maria", "Santos", 'L'}, "CIS-2201", 3};
-    studtype s3 = {"23100752", {"Juan", "Dela Cruz", 'M'}, "CIS-2202", 2};
+    studtype s3 = {"23100752", {"Luke", "Cabahug", 'E'}, "CIS-2203", 2};
+    studtype s4 = {"23100753", {"Danni", "German", 'G'}, "CIS-2203", 2};
+    studtype s5 = {"23100754", {"Tombi", "Yatake", 'M'}, "CIS-2202", 2};
 
     // Insert students (unique insert)
     insertLastUniqueArray(&AList, s1);
     insertLastUniqueArray(&AList, s2);
     insertLastUniqueArray(&AList, s3);
+    insertLastUniqueArray(&AList, s4);
+    insertLastUniqueArray(&AList, s5);
 
-    printf("\nCurrent List (%d students):\n", AList.count);
-    for (int i = 0; i < AList.count; i++) {
-        printf("%s - %s %c. %s\n", 
-               AList.studs[i].ID, 
-               AList.studs[i].name.FN, 
-               AList.studs[i].name.MI, 
-               AList.studs[i].name.LN);
-    }
+    printf("Original List:\n");
+    displayAList(AList);
 
     // Try deleting s2
+    
+    printf("After Delete Elem:\n");
     studtype deleted = deleteElemArray(&AList, "23100751");
 
-    printf("\nDeleted: %s - %s %c. %s\n",
-           deleted.ID,
-           deleted.name.FN,
-           deleted.name.MI,
-           deleted.name.LN);
+    displayAList(AList);
 
-    printf("\nList after deletion (%d students):\n", AList.count);
-    for (int i = 0; i < AList.count; i++) {
-        printf("%s - %s %c. %s\n", 
-               AList.studs[i].ID, 
-               AList.studs[i].name.FN, 
-               AList.studs[i].name.MI, 
-               AList.studs[i].name.LN);
-    }
+    ArrayList newAList = separateCourseArray(&AList, "CIS-2203");
+
+    printf("\nAfter CIS-2203 enrollee separated from list\n");
+    displayAList(AList);
+    printf("\n");
+    displayAList(newAList);
 
     return 0;
 }
 
-/* Helper Functions for ArrayList */ 
+//* Helper Functions for ArrayList *// 
 
 // Initializes the ArrayList by setting the count to 0
+// Can also be called as MAKENULL function
 void initAList(ArrayList *L){
     L->count = 0;
 }
 
-// Main Functions for ArrayList 
+// Displays all students in the ArrayList
+void displayAList(ArrayList L){
+    if (L.count != 0) {
+        printf("\n%-10s %-10s %-5s %-30s\n", "ID", "Course", "Year", "Name");
+        printf("--------------------------------------------------------------\n");
+        for (int i = 0; i < L.count; i++) {
+            printf("%-10s %-10s %-5d %s %c. %s\n",
+                   L.studs[i].ID,
+                   L.studs[i].course,
+                   L.studs[i].yrlevel,
+                   L.studs[i].name.FN,
+                   L.studs[i].name.MI,
+                   L.studs[i].name.LN);
+        }
+    } else {
+        printf("List is empty\n");
+    }
+}
+
+
+
+//* Main Functions for ArrayList *//
 
 // Inserts a student at the first position (index 0) of the list
 void inserFirstArray(ArrayList *L, studtype newStud){
