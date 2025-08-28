@@ -12,6 +12,32 @@ You are required to write insertion and deletion operations for both implementat
   <img src="image.png" alt="List Array Version 1" width="1000"/>
 </p>
 
+``` c
+typedef struct {
+    char FN[24];
+    char LN[16];
+    char MI;
+}nametype;
+
+typedef struct{
+    char ID[9];
+    nametype name;
+    char course[10];
+    int yrlevel;
+}studtype;
+
+typedef struct{
+    studtype studs[ARR_LENGHT];
+    int count;
+}ArrayList;
+
+typedef struct cell{
+    studtype stud;
+    struct cell *link;
+}*LinkList;
+
+```
+
 # Insert and Delete Operations
 
 For each of the implementations (**Array** and **Linked List**), write the code for the following insert and delete operations.
