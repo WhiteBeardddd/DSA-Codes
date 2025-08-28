@@ -56,6 +56,6 @@ void inserLastLinkList(LinkList *L, studtype newStud);
 void insertLastUniqueLinkList(LinkList *L, studtype newStud);
 void inserAtPositionLinkList(LinkList *L, studtype newStud, int pos);
 studtype deleteElemLinkList(LinkList *L, char ID[]);
-ArrayList separateCourseLinkList(LinkList *L, char course[]);
+LinkList separateCourseLinkList(LinkList *L, char course[]);
 
 #endif

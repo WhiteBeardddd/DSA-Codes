@@ -31,7 +31,7 @@ void displayAList(ArrayList L){
 //* Main Functions for ArrayList *//
 
 // Inserts a student at the first position (index 0) of the list
-void inserFirstArray(ArrayList *L, studtype newStud){
+void insertFirstArray(ArrayList *L, studtype newStud){
     if(L->count == 0){
         // If the list is empty, just put the new student at index 0
         L->studs[0] = newStud;
@@ -88,7 +88,7 @@ void insertLastUniqueArray(ArrayList *L, studtype newStud){
 }
 
 // Inserts a student at a specific position
-void inserAtPositionArray(ArrayList *L, studtype newStud, int pos){
+void insertAtPositionArray(ArrayList *L, studtype newStud, int pos){
     if(L->count == ARR_LENGHT){
         printf("The Array is full");
     }else if(pos < 0 || pos > L->count){
