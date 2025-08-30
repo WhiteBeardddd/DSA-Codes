@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 typedef struct node {
   char elem;
   struct node *link;
@@ -14,8 +14,8 @@ void deleteElem(charList *list, char X);
 void deleteAllOccur(charList *list, char X);
 void insertSorted(charList *list, char value);
 void sortList(charList *list);
-
 // Helper Function Prototypes
+bool findElem(charList list, char X);
 void init(charList *list);
 void display(charList list);
 charList createNode(char X);
@@ -93,7 +93,6 @@ void deleteAllOccur(charList *list, char X){
     }
 }
 
-
 void sortList(charList *list) {
     charList sorted = NULL;
     while (*list != NULL) {
@@ -120,6 +119,16 @@ void insertSorted(charList *list, char X){
     }
 }
 // Helper Functions
+bool findElem(charList list, char X){
+    charList trav = list;
+    if(list != NULL){
+        for(; trav != NULL && trav->elem != X; trav = trav->link){}
+    }else{
+        printf("List is empty");
+    }
+    return(trav != NULL)? true: false;
+}
+
 void init(charList *list){
     *list = NULL;
 }
@@ -197,8 +206,15 @@ int main(){
     
     printf("\n");
     printf("Display 5: ");
-    insertLast(&List, 'A');
+    insertLast(&List, 'X');
     display(List);
+
+    
+    printf("\n");
+    printf("Display 6: ");
+    bool catcher = findElem(List, 'X');
+    printf("%d", catcher);
+
 
     return 0;
 }
