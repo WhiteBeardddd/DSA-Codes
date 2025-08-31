@@ -102,12 +102,3 @@ This exercise explores array representation, user-defined data types, and functi
 * Document your code with comments for clarity.
 
 ---
-
-## Expected Learning Outcomes
-
-By completing this exercise, you will:
-
-* Understand array representation in C.
-* Practice creating custom data types using `typedef`.
-* Strengthen your knowledge of function design, constraints, and execution flow.
-* Learn how to simulate and debug using call stack visualization.

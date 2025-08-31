@@ -57,28 +57,29 @@ void deleteELem(charList *list, char X){
 void deleteAllOccur(charList *list, char X){
     
     // VERSION 1 //
-    // if(list->count != 0){ // Checks if List is not Empty
-    //     bool found = false;
+    if(list->count != 0){ // Checks if List is not Empty
+        bool found = false;
 
-    //     for(int i = 0; i < list->count; i++){
-    //         // D - a
-    //         if(list->elem[i] == X){
-    //             // marks that X is found inside the List
-    //             found = true;
-    //             // Shift elements left to overwrite the found element
-    //             for(int j = i; j < list->count - 1; j++){
-    //                 list->elem[j] = list->elem[j + 1];
-    //             }
-    //             list->count--; // reduce list size
-    //             i--; // recheck current index (since it has new value)
-    //         }
-    //     }
-    //     if(found == false){
-    //         printf("Element '%c' does not exist in the list!\n", X); // D - b
-    //     }
-    // }else{
-    //     printf("List is empty"); // D - c
-    // }
+        for(int i = 0; i < list->count;){
+            // D - a
+            if(list->elem[i] == X){
+                // marks that X is found inside the List
+                found = true;
+                // Shift elements left to overwrite the found element
+                for(int j = i; j < list->count - 1; j++){
+                    list->elem[j] = list->elem[j + 1];
+                }
+                list->count--; // reduce list size
+            }else{
+                i++;
+            }
+        }
+        if(found == false){
+            printf("Element '%c' does not exist in the list!\n", X); // D - b
+        }
+    }else{
+        printf("List is empty"); // D - c
+    }
 
     // VERSION 2
     // if(list->count != 0){
