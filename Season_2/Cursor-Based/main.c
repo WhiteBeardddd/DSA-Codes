@@ -22,7 +22,10 @@ typedef int CurList;
 int allocSpace(VirtualHeap *VH);
 void deallocSpace(VirtualHeap *VH, int index);
 void initLIST(VirtualHeap *VH); 
-
+void displayList(VirtualHeap VH, CurList X);
+void insertFirst(VirtualHeap *VH, CurList *X, NameType data);
+void insertLast(VirtualHeap *VH, CurList *X, NameType data);
+void delete(VirtualHeap *VH, CurList *L, NameType data);
 
 int main(){
 
@@ -76,6 +79,18 @@ void insertLast(VirtualHeap *VH, CurList *L, NameType data){
         VH->Nodes[temp].link = -1;
         *trav = temp;
     }
+}
+
+void deleteElem(VirtualHeap *VH, CurList *L, NameType data){
+    
+}
+
+void deleteAt(VirtualHeap *VH, CurList *L, int pos){
+
+}
+
+void deleteLast(VirtualHeap *VH, CurList *L, NameType data){
+
 }
 
 // initLIST(). The function will initialize the List to be empty.
