@@ -1,12 +1,12 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #define MAX 7
-
 typedef struct {
     char FName[24];
     char LName[16];
     char MI;
 }NameType;
-
 typedef struct{
     NameType data;
     int link;
@@ -19,12 +19,14 @@ typedef struct{
 
 typedef int CurList;
 
+
 int allocSpace(VirtualHeap *VH);
 void deallocSpace(VirtualHeap *VH, int index);
-void initLIST(VirtualHeap *VH); 
-void displayList(VirtualHeap VH, CurList X);
-void insertFirst(VirtualHeap *VH, CurList *X, NameType data);
-void insertLast(VirtualHeap *VH, CurList *X, NameType data);
+void initLIST(VirtualHeap *VH, CurList *l); 
+void displayList(VirtualHeap VH, CurList L);
+
+void insertFirst(VirtualHeap *VH, CurList *L, NameType data);
+void insertLast(VirtualHeap *VH, CurList *L, NameType data);
 void delete(VirtualHeap *VH, CurList *L, NameType data);
 
 int main(){
@@ -45,27 +47,36 @@ void deallocSpace(VirtualHeap *VH, int index){
     VH->Avail = index;
 }
 
-void initLIST(VirtualHeap *VH){
-    int x, i;
+void initLIST(VirtualHeap *VH, CurList *L){
+    int i;
     VH->Avail = MAX - 1;
-    for(x = 0, i = -1; x < MAX; x++, i++){
-        VH->Nodes[x].link = i;
+    for(i = 0; i < MAX; i++){
+        VH->Nodes[i].link = i - 1;
     }
+    *L = -1;
 }
 
-void displayList(VirtualHeap VH, CurList X){
+void displayList(VirtualHeap VH, CurList L) {
     CurList trav;
-    for(trav = X; trav != -1; VH.Nodes[trav].link){
-        print("%c", VH.Nodes[trav].data);
+    for (trav = L; trav != -1; trav = VH.Nodes[trav].link) {
+        printf("%s %s %c\n",
+               VH.Nodes[trav].data.FName,
+               VH.Nodes[trav].data.LName,
+               VH.Nodes[trav].data.MI);
     }
+    printf("\n");
 }
 
-void insertFirst(VirtualHeap *VH, CurList *X, NameType data){
+
+
+void insertFirst(VirtualHeap *VH, CurList *L, NameType data){
     CurList temp = allocSpace(VH);
     if (temp != -1){
         VH->Nodes[temp].data = data;
-        VH->Nodes[temp].link = *X;
-        *X = temp;
+        VH->Nodes[temp].link = *L;
+        *L = temp;
+    }else{
+        printf("No available space!");
     }
 }
 
@@ -81,16 +92,32 @@ void insertLast(VirtualHeap *VH, CurList *L, NameType data){
     }
 }
 
-void deleteElem(VirtualHeap *VH, CurList *L, NameType data){
+void insertLastUnique(VirtualHeap *VH, CurList *L, NameType data){
+    CurList *trav;
     
+    for(trav = L; *trav != NULL && strcmp(VH->Nodes[*trav].data.FName, data.FName) != 0; trav = &VH->Nodes[*trav].link){}
+    if(*trav != NULL){
+        printf("Element Exist in the list, insert is invalid\n");
+        deallocSpace(&VH, trav);
+    }else{
+        allocSpace(&VH);
+        VH->Nodes[*trav].data = data;
+
+    }
 }
 
-void deleteAt(VirtualHeap *VH, CurList *L, int pos){
 
-}
+void deleteElem(VirtualHeap *VH, CurList *L, NameType data) {
+    int *trav;
+    for (trav = L; *trav != -1 && strcmp(VH->Nodes[*trav].data.FName, data.FName) != 0; trav = &VH->Nodes[*trav].link);
 
-void deleteLast(VirtualHeap *VH, CurList *L, NameType data){
-
+    if (*trav != -1) {
+        int temp = *trav;
+        *trav = VH->Nodes[temp].link;
+        deallocSpace(VH, temp);
+    } else {
+        printf("Element not found\n");
+    }
 }
 
 // initLIST(). The function will initialize the List to be empty.
