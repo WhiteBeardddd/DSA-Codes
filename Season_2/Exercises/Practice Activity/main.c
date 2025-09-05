@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "StackArray.h"
-#include "StackLinkList.h"
-#include "StackDoublyLinkList.h"
-#include "StackCursorBased.h"
+// #include "StackArray.h"
+// #include "StackLinkList.h"
+// #include "StackDoublyLinkList.h"
+// #include "StackCursorBased.h"
 
 
 #define MAX 10
