@@ -117,7 +117,8 @@ void deleteFirstOccurance(VirtualHeap *VH, cList *L, NameType data){
     }
 
 }
-int main(){
+
+    int main(){
     VirtualHeap VH;
     cList List;
     
