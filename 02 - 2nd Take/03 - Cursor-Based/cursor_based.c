@@ -30,6 +30,7 @@ void insertFirst(VirtualHeap *VH, cList *L, NameType data);
 void insertLast(VirtualHeap *VH, cList *L, NameType data);
 void insertLastUnique(VirtualHeap *VH, cList *L, NameType data);
 void deleteFirstOccurance(VirtualHeap *VH, cList *L, NameType data);
+void deleteAllOccerance(VirtualHeap *VH, cList, NameType data);
 
 // HELPER FUNCTIONS //
 void initList(VirtualHeap *VH, cList *L){
