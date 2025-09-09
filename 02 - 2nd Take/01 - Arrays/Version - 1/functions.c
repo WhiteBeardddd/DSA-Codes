@@ -11,6 +11,20 @@ void makenull(charList *L){
     L->count = 0; // reinitializes List
 }
 
+// Displays the contents of the list
+void display(charList L){
+    if(L.count != 0){
+        for(int i = 0; i < L.count; i++){
+            printf("%c", L.elem[i]); // Print each element
+            if (i < L.count - 1 ){ // Print commas between elements
+                printf(",");
+            }
+        }
+    }else{
+        printf("Nothing to display, List is empty");
+    }
+}
+
 // Deletes the first occurrence of a given element x in the list
 void deleteFirstOccurence(charList *L, char x){
     if(L->count != 0){ // Checks if List is not Empty
@@ -120,18 +134,4 @@ char locate(charList L, char x){
     int i;
     for(i = 0; i < L.count && L.elem[i] != x; i++){}
     return(i < L.count)? x : '\0';
-}
-
-// Displays the contents of the list
-void display(charList L){
-    if(L.count != 0){
-        for(int i = 0; i < L.count; i++){
-            printf("%c", L.elem[i]); // Print each element
-            if (i < L.count - 1 ){ // Print commas between elements
-                printf(",");
-            }
-        }
-    }else{
-        printf("Nothing to display, List is empty");
-    }
 }
