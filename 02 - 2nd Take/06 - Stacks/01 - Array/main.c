@@ -153,36 +153,82 @@ void top(Stack S){
             ,S.studRec[S.top].studName.MI
             ,S.studRec[S.top].studName.LName
             ,S.studRec[S.top].id
-            ,S.studRec[S.top].course
-        );
+            ,S.studRec[S.top].course);
     }else{
         printf("The Stack is empty!.\n");
     }
 }
 
-void display(Stack *S){
-    Stack temp;
-    initList(&temp);
+// * display top to bottom * //
+void display1(Stack S){
+    if(!isEmpty(S)){
+        while(!isEmpty(S)){
+            top(S);
+            pop(&S);
+        }
+    }else{
+        printf("The Stack is empty!.\n");
+    }
+}
 
-    if(!isEmpty(*S)){
-        while(S->top != -1){
-            studType stud = popReturn(S);
-            push(&temp, stud);
-            
+// * display bottom to top * //
+void display2(Stack S){
+    if(!isEmpty(S)){
+        Stack temp;
+        initList(&temp);
+
+        while (!isEmpty(S))
+        {
+            push(&temp , popReturn(&S));
+        }
+
+        while (!isEmpty(temp))
+        {
             printf("Name: %s %c %s, id: %d, course: %s\n"
-                ,stud.studName.FName
-                ,stud.studName.MI
-                ,stud.studName.LName
-                ,stud.id
-                ,stud.course
-            );
+            ,temp.studRec[temp.top].studName.FName
+            ,temp.studRec[temp.top].studName.MI
+            ,temp.studRec[temp.top].studName.LName
+            ,temp.studRec[temp.top].id
+            ,temp.studRec[temp.top].course);
+            pop(&temp);
         }
-
-        while(temp.top != -1){
-            push(&S, popReturn(&temp));
-        }
+        
 
     }else{
-        printf("Stack is empty");
+        printf("The Stack is empty!.\n");
+    }
+}
+
+// * display using traversal (bottom to top) * //
+void display3(Stack S){
+    if(!isEmpty(S)){
+        for(int i = 0; i <= S.top; i++){   
+            printf("Name: %s %c %s, id: %d, course: %s\n",
+                S.studRec[i].studName.FName,
+                S.studRec[i].studName.MI,
+                S.studRec[i].studName.LName,
+                S.studRec[i].id,
+                S.studRec[i].course
+            );
+        }
+    }else{
+        printf("The Stack is empty!.\n");
+    }
+}
+
+// * display using traversal (top to bottom) * //
+void display4(Stack S){
+    if(!isEmpty(S)){
+        for(int i = S.top; i > -1; i--){   
+            printf("Name: %s %c %s, id: %d, course: %s\n",
+                S.studRec[i].studName.FName,
+                S.studRec[i].studName.MI,
+                S.studRec[i].studName.LName,
+                S.studRec[i].id,
+                S.studRec[i].course
+            );
+        }
+    }else{
+        printf("The Stack is empty!.\n");
     }
 }

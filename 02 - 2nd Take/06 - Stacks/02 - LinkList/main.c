@@ -3,8 +3,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define MAX 10
-
 typedef struct {
     char FName[24];
     char LName[16];
@@ -17,7 +15,48 @@ typedef struct{
     char course[8];
 }studType;
 
-typedef struct{
-    int top;
-    studType studRec[MAX];
-}Stack;
+typedef struct node{
+    studType studRec;
+    struct node *link;
+}*Stack;
+
+
+void initList(Stack *S){
+    S = NULL;
+}
+
+void display(Stack *S){
+    
+}
+
+
+/* HELPER FUNCTIONS */
+
+// initialize the Stack
+void initList(Stack *S);
+
+// display the entire Stack 
+void display(Stack *S);
+
+// check if stack is empty //
+bool isEmpty(Stack S);
+
+// check if stack is full //
+bool isFull(Stack S);
+
+// restarts the stack //
+void makeNull(Stack *S);
+
+/* MAIN STACK FUNCTIONS */
+
+//insert at the Top of the Stack
+bool push(Stack *S, studType student);
+
+//delete at the Top of the Stack
+bool pop(Stack *S);
+
+// return the top of the Stack if no item in the stack return dummy//
+studType popReturn(Stack *S);
+
+// display the top of the Stack //
+void top(Stack S);
