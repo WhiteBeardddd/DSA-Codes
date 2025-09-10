@@ -22,9 +22,24 @@ typedef struct{
     studType studRec[MAX];
 }Stack;
 
+/* HELPER FUNCTIONS */
 
 // initialize the Stack
 void initList(Stack *S);
+
+// display the entire Stack 
+void display(Stack *S);
+
+// check if stack is empty //
+bool isEmpty(Stack S);
+
+// check if stack is full //
+bool isFull(Stack S);
+
+// restarts the stack //
+void makeNull(Stack *S);
+
+/* MAIN STACK FUNCTIONS */
 
 //insert at the Top of the Stack
 bool push(Stack *S, studType student);
@@ -37,9 +52,6 @@ studType popReturn(Stack *S);
 
 // display the top of the Stack //
 void top(Stack S);
-
-// display the entire Stack 
-void display(Stack S);
 
 int main(){
     Stack S;
@@ -55,14 +67,14 @@ int main(){
     push(&S, s3);
 
     printf("\nDisplaying stack:\n");
-    display(S);
+    display(&S);
 
     printf("\nTop element:\n");
     top(S);
 
     printf("\nPop one element...\n");
     pop(&S);
-    display(S);
+    display(&S);
 
     printf("\nPop and return:\n");
     studType popped = popReturn(&S);
@@ -74,7 +86,7 @@ int main(){
            popped.course);
 
     printf("\nFinal stack:\n");
-    display(S);
+    display(&S);
 
     return 0;
 }
@@ -84,9 +96,21 @@ void initList(Stack *S){
     S->top = -1;
 }
 
+bool isEmpty(Stack S){
+    return(S.top == -1)? true : false;
+}
+
+bool isFull(Stack S){
+    return(S.top == MAX - 1)? true : false;
+}
+
+void makeNull(Stack *S){
+    S->top = -1;
+}
+
 bool push(Stack *S, studType student){
     bool flag = false;
-    if(S->top != MAX - 1){
+    if(!isFull(*S)){
         S->top++;
         S->studRec[S->top] = student;
         flag = true;
@@ -98,7 +122,7 @@ bool push(Stack *S, studType student){
 
 bool pop(Stack *S){
     bool flag = false;
-    if(S->top != -1){
+    if(!isEmpty(*S)){
         S->top--;
         flag = true;
     }else{
@@ -111,7 +135,7 @@ bool pop(Stack *S){
 studType popReturn(Stack *S){
     studType dummy = {{"XXXXX", "XXXXX", 'X'}, -1, "XXXXX"};
     
-    if(S->top != -1){
+    if(!isEmpty(*S)){
         dummy.studName = S->studRec[S->top].studName;
         strcpy(dummy.course, S->studRec[S->top].course);
         dummy.id = S->studRec[S->top].id;
@@ -123,8 +147,8 @@ studType popReturn(Stack *S){
 }
 
 void top(Stack S){
-    if(S.top != -1){
-        printf("Name: %s %c %s, id: %d, course: %s"
+    if(!isEmpty(S)){
+        printf("Name: %s %c %s, id: %d, course: %s\n"
             ,S.studRec[S.top].studName.FName
             ,S.studRec[S.top].studName.MI
             ,S.studRec[S.top].studName.LName
@@ -136,13 +160,13 @@ void top(Stack S){
     }
 }
 
-void display(Stack S){
+void display(Stack *S){
     Stack temp;
     initList(&temp);
 
-    if(S.top != -1){
-        while(S.top != -1){
-            studType stud = popReturn(&S);
+    if(!isEmpty(*S)){
+        while(S->top != -1){
+            studType stud = popReturn(S);
             push(&temp, stud);
             
             printf("Name: %s %c %s, id: %d, course: %s\n"
