@@ -21,19 +21,19 @@ typedef struct node{
 }*Stack;
 
 
-void initList(Stack *S){
+Stack initList(Stack *S){
     S = NULL;
 }
 
 void display(Stack *S){
-    
+
 }
 
 
 /* HELPER FUNCTIONS */
 
 // initialize the Stack
-void initList(Stack *S);
+Stack initList(Stack *S);
 
 // display the entire Stack 
 void display(Stack *S);
