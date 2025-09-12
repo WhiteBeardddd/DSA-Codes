@@ -20,43 +20,63 @@ typedef struct node{
     struct node *link;
 }*Stack;
 
+Stack initList(Stack *S);
+bool isEmpty(Stack S);
+bool isFull(Stack S);
+void makeNull(Stack *S);
+bool push(Stack *S, studType student);
+bool pop(Stack *S);
+studType popReturn(Stack *S);
+void top(Stack S);
+void display1(Stack S);
+void display2(Stack S);
+void display3(Stack S);
+void display4(Stack S);
 
 Stack initList(Stack *S){
     S = NULL;
 }
 
-void display(Stack *S){
+bool isEmpty(Stack S){
+    return(!S)? true: false;
+}
+
+bool isFull(Stack S){
 
 }
 
+void makeNull(Stack *S){
 
-/* HELPER FUNCTIONS */
+}
 
-// initialize the Stack
-Stack initList(Stack *S);
+bool push(Stack *S, studType student){
 
-// display the entire Stack 
-void display(Stack *S);
+}
 
-// check if stack is empty //
-bool isEmpty(Stack S);
+bool pop(Stack *S){
 
-// check if stack is full //
-bool isFull(Stack S);
+}
 
-// restarts the stack //
-void makeNull(Stack *S);
+studType popReturn(Stack *S){
+    
+}
 
-/* MAIN STACK FUNCTIONS */
+void top(Stack S){
 
-//insert at the Top of the Stack
-bool push(Stack *S, studType student);
+}
 
-//delete at the Top of the Stack
-bool pop(Stack *S);
+void display1(Stack S){
+    
+} 
 
-// return the top of the Stack if no item in the stack return dummy//
-studType popReturn(Stack *S);
+void display2(Stack S){
+    
+} 
 
-// display the top of the Stack //
-void top(Stack S);
+void display3(Stack S){
+    
+} 
+
+void display4(Stack S){
+    
+} 
