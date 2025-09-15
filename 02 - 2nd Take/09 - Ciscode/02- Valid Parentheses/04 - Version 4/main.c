@@ -54,7 +54,6 @@ bool isValidParentheses (char parentheses[]) {
     return isEmpty(temp);
 }
 
-
 /*************************************/
 /*         HELPER FUNCTIONS          */
 /*************************************/
