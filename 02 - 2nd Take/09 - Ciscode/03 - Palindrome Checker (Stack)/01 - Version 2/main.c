@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #define MAX 128
 
 typedef struct node{
@@ -32,15 +33,20 @@ bool isPalindrome(char palindrome[]){
  // implement here!!
     Stack temp;
     initStack(&temp);
-    char prev;
 
     for(int i = 0; palindrome[i] != '\0'; i++){
-        push(&temp, prev);
+        Push(&temp, palindrome[i]);
     }
 
-    while()
+    for(int i = 0; !isEmpty(temp); i++){
+        if(Top(temp) != palindrome[i]){
+            return false;
+        }else{
+            Pop(&temp);
+        }
+    }
 
-    
+    return isEmpty(temp);
 }
 
 void Push(Stack* S, char x){
