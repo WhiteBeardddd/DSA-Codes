@@ -88,7 +88,19 @@ boolean isEqualNotSorted(List A, List B) {
 
 boolean isEqualSorted(List A, List B) {
     // Implementation here...
-    
+    int hash1 , hash2 = 0;
+
+    for(int i = 0; A != NULL || B != NULL; A = A->next, B = B->next){
+        if(A != NULL){
+            hash1 += A->data + i;
+        }
+
+        if(B != NULL){
+            hash2 += B->data + i;
+        }
+    }
+
+    return hash1 == hash2;
 }
 
 void sort(List L) {
