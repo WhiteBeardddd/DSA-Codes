@@ -24,11 +24,11 @@ void insertLast(charList *list, char X){
     }
 }
 
-void insertLastUnique(charList *list, char X){
+void insertLastUnique(charList *L, char X){
     charList newNode = createNode(X);
     if(newNode != NULL){
         charList *trav;
-        for(trav = list; *trav != NULL && (*trav)->elem != X; trav = &(*trav)->link){}
+        for(trav = L; *trav != NULL && (*trav)->elem != X; trav = &(*trav)->link){}
         if(*trav != NULL){
             printf("Element Exist in the list, insert is invalid\n");
             free(newNode);

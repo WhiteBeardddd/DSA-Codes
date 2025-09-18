@@ -6,6 +6,7 @@ int main(){
     charList List;
     init(&List);
 
+    
     // make first, second, third
     insertLastUnique(&List, 'C');
     insertLastUnique(&List, 'S');
