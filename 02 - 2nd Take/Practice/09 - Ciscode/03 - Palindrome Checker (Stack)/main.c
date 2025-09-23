@@ -37,9 +37,6 @@ bool isPalindrome(char palindrome[]){
     for(int i = 0; palindrome[i] != '\0'; i++){
         push(&temp, prev);
     }
-
-    while()
-
     
 }
 
