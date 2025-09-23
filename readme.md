@@ -4,7 +4,7 @@
 
 It will contain my codes written in C, covering different data structures and algorithm implementations, such as:
 
-📂 Arrays, Linked Lists, Stacks, Queues, and Trees
+📂 Arrays, Linked Lists, Stacks, Queues, SETS, HASHING, COMPUTER WORD, BIT VECTOR and Trees
 
 🔗 Graphs and their traversals
 

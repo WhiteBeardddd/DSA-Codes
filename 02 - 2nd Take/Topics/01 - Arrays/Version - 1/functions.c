@@ -11,15 +11,24 @@ void makenull(charList *L){
     L->count = 0; // reinitializes List
 }
 
+bool isEmpty(charList L){
+    return L.count == 0;
+}
+
+bool isFull(charList L){
+    return L.count == SIZE;
+}
+
 // Displays the contents of the list
 void display(charList L){
-    if(L.count != 0){
+    if(!isEmpty(L)){
         for(int i = 0; i < L.count; i++){
             printf("%c", L.elem[i]); // Print each element
             if (i < L.count - 1 ){ // Print commas between elements
                 printf(",");
             }
         }
+        printf("\n");
     }else{
         printf("Nothing to display, List is empty");
     }
@@ -27,7 +36,7 @@ void display(charList L){
 
 // Deletes the first occurrence of a given element x in the list
 void deleteFirstOccurence(charList *L, char x){
-    if(L->count != 0){ // Checks if List is not Empty
+    if(!isEmpty(*L)){ // Checks if List is not Empty
         int i;
         // Search for the element x in the list
         for(i = 0; i < L->count && L->elem[i] != x; i++){}
@@ -50,7 +59,7 @@ void deleteFirstOccurence(charList *L, char x){
 
 // Deletes all occurrences of a given element x in the list
 void deleteAllOccurence(charList *L, char x){
-    if(L->count != 0){ // Checks if List is not Empty
+    if(!isEmpty(*L)){ // Checks if List is not Empty
         for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){
                 // Shift elements left to overwrite the found element
@@ -69,7 +78,7 @@ void deleteAllOccurence(charList *L, char x){
 
 // Deletes the Last element in the given List
 void deleteLast(charList *L){
-    if(L->count != 0){
+    if(!isEmpty(*L)){
         L->count--;
     }else{
         printf("List is empty");
@@ -78,10 +87,7 @@ void deleteLast(charList *L){
 
 // Inserts an element at the beginning of the list
 void insertFirst(charList *L, char x){
-    if(L->count == 0){ // If list is empty, just place element at 0
-        L->elem[0] =  x;
-        L->count++;
-    }else if(L->count < sizeof(L->elem) / sizeof(L->elem[0])){ // If not full
+    if(!isFull(*L)){ // If not full
         // Shift elements to the right to make space at the front
         for(int i = L->count; i > 0; i--){
             L->elem[i] = L->elem[i -1];
@@ -95,10 +101,7 @@ void insertFirst(charList *L, char x){
 
 // Inserts an element in the middle of the list
 void insertMiddle(charList *L, char x){
-    if(L->count == 0){ // If empty, just put it at index 0
-        L->elem[0] =  x;
-        L->count++;
-    }else if(L->count < sizeof(L->elem) / sizeof(L->elem[0])){ // If not full
+    if(!isFull(*L)){ // If not full
         int middle = L->count / 2; // Compute middle index
         // Shift elements to the right starting from the middle
         for(int i = L->count; i > middle; i--){
@@ -113,7 +116,7 @@ void insertMiddle(charList *L, char x){
 
 // Inserts an element at the end of the list
 void insertLast(charList *L, char x){
-    if(L->count < sizeof(L->elem) / sizeof(L->elem[0])){ // If not full
+    if(!isFull(*L)){ // If not full
         L->elem[L->count] = x; // Place at the end
         L->count++;
     }else{

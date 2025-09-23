@@ -1,0 +1,29 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+#include <stdbool.h>
+#include <stdlib.h>
+#define SIZE 10
+
+// version 2
+typedef struct {
+    char elem[SIZE];
+    int count;
+} *charList;
+
+// Function prototypes
+void initList(charList *L);
+void display(charList L);
+void makeNull(charList L);
+bool isEmpty(charList L);
+bool isFull(charList L);
+void deleteFirstOccurence(charList L, char x);
+void deleteAllOccurence(charList L, char x);
+void deleteLast(charList L);
+void deleteFirst(charList L);
+void insertFirst(charList L, char x);
+void insertMiddle(charList L, char x);
+void insertLast(charList L, char x);
+bool isExist(charList L, char x);
+char locate(charList L, char x);
+
+#endif

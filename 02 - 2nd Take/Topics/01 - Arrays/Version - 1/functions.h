@@ -13,6 +13,8 @@ typedef struct {
 void initList(charList *L);
 void display(charList L);
 void makenull(charList *L);
+bool isEmpty(charList L);
+bool isFull(charList L);
 void deleteFirstOccurence(charList *L, char x);
 void deleteAllOccurence(charList *L, char x);
 void insertFirst(charList *L, char x);

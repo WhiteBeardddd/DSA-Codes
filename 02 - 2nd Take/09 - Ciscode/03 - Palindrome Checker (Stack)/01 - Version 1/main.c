@@ -31,26 +31,37 @@ int main(){
 
 bool isPalindrome(char palindrome[]){
  // implement here!!
-    Stack temp;
+    Stack temp, temp1, reverseStack;
     initStack(&temp);
+    initStack(&temp1);
+    initStack(&reverseStack);
+    bool yes;
 
     for(int i = 0; palindrome[i] != '\0'; i++){
         Push(&temp, palindrome[i]);
+        Push(&temp1, palindrome[i]);
     }
-<<<<<<<< HEAD:02 - 2nd Take/Practice/09 - Ciscode/03 - Palindrome Checker (Stack)/main.c
-    
-========
 
-    for(int i = 0; !isEmpty(temp); i++){
-        if(Top(temp) != palindrome[i]){
-            return false;
+    while(temp.top != -1){
+        char x = Top(temp);
+        Pop(&temp);
+        Push(&reverseStack, x);
+    }
+
+    while(!isEmpty(temp1) && !isEmpty(reverseStack)){
+        char left = Top(temp1);
+        char right = Top(reverseStack);
+        if(left == right){
+            Pop(&temp1);
+            Pop(&reverseStack);
+            yes = true;
         }else{
-            Pop(&temp);
+            return false;
         }
+
     }
 
-    return isEmpty(temp);
->>>>>>>> 4ca49b5708a2a774bcdf5ff9f1277e17e29dfd66:02 - 2nd Take/09 - Ciscode/03 - Palindrome Checker (Stack)/01 - Version 2/main.c
+    return yes;
 }
 
 void Push(Stack* S, char x){
