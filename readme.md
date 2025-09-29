@@ -13,3 +13,5 @@ It will contain my codes written in C, covering different data structures and al
 🧩 Problem-solving using C programming concepts
 
 The goal of this repository is to demonstrate my understanding of DSA through actual implementations, while serving as a record of my coding journey during 2025.
+
+Im tired Boss!
