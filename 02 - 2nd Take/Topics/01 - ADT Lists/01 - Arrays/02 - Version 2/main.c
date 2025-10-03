@@ -26,7 +26,7 @@ int main(){
 
     deleteFirst(L);
     display(L); // M,B
-
+    
     insertLast(L, 'B');
     insertLast(L, 'B');
     display(L); // M,B,B,B

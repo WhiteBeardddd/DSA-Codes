@@ -1,162 +1,184 @@
 #include <stdio.h>
 #include <stdbool.h>
-#define SIZE 10
+#define SIZE 10   // Maximum size of the list
 
-// version 1
+// Version 1
+// Define a structure representing a list of characters
 typedef struct {
-    char elem[SIZE];
-    int count;
-} charList;
+    char elem[SIZE];  // fixed-size array to hold characters
+    int count;        // number of elements currently in the list
+} charList;           // value type (not a pointer, unlike version 2)
 
-// Function prototypes
+// ================== Function Prototypes ==================
 void initList(charList *L);
 void makenull(charList *L);
 bool isEmpty(charList L);
 bool isFull(charList L);
+bool isExist(charList L, char x);
+char locate(charList L, char x);
 void display(charList L);
 void deleteFirstOccurence(charList *L, char x);
 void deleteAllOccurence(charList *L, char x);
+void deleteLast(charList *L);
 void insertFirst(charList *L, char x);
 void insertMiddle(charList *L, char x);
 void insertLast(charList *L, char x);
-bool isExist(charList L, char x);
-char locate(charList L, char x);
 
+// ================== Function Definitions ==================
 
-// Initializes the list by setting its count to 0
+// ======== Initialization Functions ========
+
+// Initialize the list by setting its count to 0
 void initList(charList *L){
-    L->count = 0; // initializes List
+    L->count = 0;  // no elements yet
 }
 
-// The same with initList sets the count to 0
+// Reset the list to empty (same as initList)
 void makenull(charList *L){
-    L->count = 0; // reinitializes List
+    L->count = 0;
 }
 
+// ======== Helper Functions ========
+
+// Check if list is empty
 bool isEmpty(charList L){
     return L.count == 0;
 }
 
+// Check if list is full
 bool isFull(charList L){
     return L.count == SIZE;
 }
 
-// Displays the contents of the list
+// Check if an element exists in the list
+bool isExist(charList L, char x){
+    int i;
+    for(i = 0; i < L.count && L.elem[i] != x; i++){}
+    return (i < L.count)? true : false;
+}
+
+// Locate element x and return it, or '\0' if not found
+char locate(charList L, char x){
+    int i;
+    for(i = 0; i < L.count && L.elem[i] != x; i++){}
+    return (i < L.count)? x : '\0';
+}
+
+// Display all elements in the list
 void display(charList L){
     if(!isEmpty(L)){
         for(int i = 0; i < L.count; i++){
-            printf("%c", L.elem[i]); // Print each element
-            if (i < L.count - 1 ){ // Print commas between elements
-                printf(",");
+            printf("%c", L.elem[i]);   // print each element
+            if(i < L.count - 1){
+                printf(",");           // print comma between elements
             }
         }
         printf("\n");
     }else{
-        printf("Nothing to display, List is empty");
+        printf("Nothing to display, List is empty\n");
     }
 }
 
-// Deletes the first occurrence of a given element x in the list
+// ======== Delete Functions ========
+
+// Delete the first occurrence of x
 void deleteFirstOccurence(charList *L, char x){
-    if(!isEmpty(*L)){ // Checks if List is not Empty
+    if(!isEmpty(*L)){
         int i;
-        // Search for the element x in the list
+        // Find the first occurrence of x
         for(i = 0; i < L->count && L->elem[i] != x; i++){}
 
-        // If found, shift all elements after it one step left
         if(i < L->count){
-            L->count--; // reduce list size
-            
-            //shifting logic
+            L->count--; // shrink list size
+            // Shift elements left to fill the gap
             for(; i < L->count; i++){
                 L->elem[i] = L->elem[i + 1];
             }
         }else{
-            printf("element does not exist!");
+            printf("Element does not exist!\n");
         }
     }else{
-        printf("List is empty");
+        printf("List is empty\n");
     }
 }
 
-// Deletes all occurrences of a given element x in the list
+// Delete all occurrences of x
 void deleteAllOccurence(charList *L, char x){
-    if(!isEmpty(*L)){ // Checks if List is not Empty
+    if(!isEmpty(*L)){
         for(int i = 0; i < L->count; i++){
             if(L->elem[i] == x){
                 // Shift elements left to overwrite the found element
                 for(int j = i; j < L->count - 1; j++){
                     L->elem[j] = L->elem[j + 1];
                 }
-                L->count--; // reduce list size
-                i--; // recheck current index (since it has new value)
+                L->count--; // shrink list size
+                i--;        // recheck current index (new element shifted in)
             }
         }
-            // printf("element does not exist!");
     }else{
-        printf("List is empty");
+        printf("List is empty\n");
     }
 }
 
-// Deletes the Last element in the given List
+// Delete the last element in the list
 void deleteLast(charList *L){
     if(!isEmpty(*L)){
-        L->count--;
+        L->count--;   // simply reduce the count
     }else{
-        printf("List is empty");
+        printf("List is empty\n");
     }
 }
 
-// Inserts an element at the beginning of the list
+// Deletes the first element in the list
+void deleteFirst(charList *L){
+    if(!isEmpty(*L)){
+        // shift all elements left
+        for(int i = 0; i < L->count; i++){
+            L->elem[i] = L->elem[i + 1];
+        }
+        L->count--;   
+    }else{
+        printf("List is empty\n");
+    }
+}
+
+// ======== Insert Functions ========
+
+// Insert element at the beginning
 void insertFirst(charList *L, char x){
-    if(!isFull(*L)){ // If not full
-        // Shift elements to the right to make space at the front
+    if(!isFull(*L)){
+        // Shift elements right to make space at index 0
         for(int i = L->count; i > 0; i--){
-            L->elem[i] = L->elem[i -1];
+            L->elem[i] = L->elem[i - 1];
         }
-        L->elem[0] = x; // Place new element at index 0
+        L->elem[0] = x;
         L->count++;
     }else{
-        printf("The Array is full");
+        printf("The Array is full\n");
     }
 }
 
-// Inserts an element in the middle of the list
+// Insert element in the middle
 void insertMiddle(charList *L, char x){
-    if(!isFull(*L)){ // If not full
-        int middle = L->count / 2; // Compute middle index
-        // Shift elements to the right starting from the middle
+    if(!isFull(*L)){
+        int middle = L->count / 2;  // middle index
+        // Shift elements right from the middle onwards
         for(int i = L->count; i > middle; i--){
-            L->elem[i] = L->elem[i -1];
+            L->elem[i] = L->elem[i - 1];
         }
-        L->elem[middle] = x; // Insert element in middle
+        L->elem[middle] = x; // place at middle
         L->count++;
     }else{
-        printf("The Array is full");
+        printf("The Array is full\n");
     }
 }
 
-// Inserts an element at the end of the list
+// Insert element at the end
 void insertLast(charList *L, char x){
-    if(!isFull(*L)){ // If not full
-        L->elem[L->count] = x; // Place at the end
+    if(!isFull(*L)){
+        L->elem[L->count] = x; // place at last position
         L->count++;
     }else{
-        printf("The Array is full");
+        printf("The Array is full\n");
     }
-}
-
-// Checks if an element exists in the list
-bool isExist(charList L, char x){
-    int i;
-    // Loop until element is found or end is reached
-    for(i = 0; i < L.count && L.elem[i] != x; i++){}
-    return (i < L.count)? true : false; // Return true if found
-}
-
-// Returns the element if found, otherwise '\0'
-char locate(charList L, char x){
-    int i;
-    for(i = 0; i < L.count && L.elem[i] != x; i++){}
-    return(i < L.count)? x : '\0';
 }
