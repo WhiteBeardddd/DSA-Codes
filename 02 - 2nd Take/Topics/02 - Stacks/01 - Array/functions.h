@@ -45,6 +45,8 @@ bool pop(Stack *S);                                            // Pop (remove) t
 studType popReturn(Stack *S);                                  // Pop & return the top element (with dummy if empty)
 void top(Stack S);                                             // Print the top element
 
+
+// NEVER TRAVERSE THE STACK!
 // Display variations
 void display1(Stack S);   // Top → Bottom (using pop, destroys copy)
 void display2(Stack S);   // Bottom → Top (uses temp stack)
