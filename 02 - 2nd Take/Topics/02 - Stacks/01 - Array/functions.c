@@ -1,5 +1,3 @@
-#ifndef FUCNTIONS_H
-#define FUNCTIONS_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -165,10 +163,14 @@ void display2(Stack S){
                 temp.studRec[temp.top].course);
             pop(&temp); // Remove after printing
         }
+        
     }else{
         printf("The Stack is empty!.\n");
     }
 }
+
+// NOTE: YOU SHOULD NEVER TRAVERSE THE STACK
+// MY FRIENDS USE THIS FOR TESTING SO I MADE IT AS WELL
 
 // Display (Bottom → Top) by traversing array
 void display3(Stack S){
@@ -212,5 +214,3 @@ studType createStudent(nameType Name, int id, char course[]){
     strcpy(newStudent.course, course);   // Copy course string
     return newStudent;
 }
-
-#endif
