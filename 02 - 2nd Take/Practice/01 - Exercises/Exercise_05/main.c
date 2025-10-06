@@ -7,7 +7,6 @@
 // #include "StackDoublyLinkList.h"
 // #include "StackCursorBased.h"
 
-
 #define MAX 10
 
 typedef struct {
