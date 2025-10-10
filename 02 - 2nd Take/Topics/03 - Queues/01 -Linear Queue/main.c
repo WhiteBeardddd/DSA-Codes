@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #define MAX 5
 
 typedef struct {
@@ -10,79 +11,71 @@ typedef struct {
 
 // Function prototypes
 void initQueue(Queue *q);
-int isFull(Queue *q);
-int isEmpty(Queue *q);
+bool isFull(Queue *q);
+bool isEmpty(Queue *q);
 void Enqueue(Queue *q, int value);
 void Dequeue(Queue *q);
-void Peek(Queue *q);
-void Display(Queue *q);
+void Peek(Queue q);
+void Display(Queue q);
 
 // Initialize the queue
 void initQueue(Queue *q) {
-    q->front = -1;
-    q->rear = -1;
+    q->front = 0;  // Front starts at index 0
+    q->rear = 0;   // Rear also starts at index 0 (not -1)
 }
 
 // Check if queue is full
-int isFull(Queue *q) {
-    return q->rear == MAX - 1;
+bool isFull(Queue *q) {
+    return (q->rear == MAX); // Full when rear reaches MAX
 }
 
 // Check if queue is empty
-int isEmpty(Queue *q) {
-    return q->front == -1 || q->front > q->rear;
+bool isEmpty(Queue *q) {
+    return (q->front == q->rear); // Empty when front and rear are equal
 }
 
-// Enqueue (Insert) operation
+// Enqueue (Insert)
 void Enqueue(Queue *q, int value) {
-    if (isFull(q)) {
-        printf("Queue is FULL! Cannot enqueue %d.\n", value);
-        return;
+    if(!isFull(q)) { // If not full
+        q->items[q->rear] = value; // Insert at rear
+        q->rear++; // Move rear forward
+        printf("Enqueued: %d\n", value);
+    } else {
+        printf("Queue is Full!, enqueue failed\n");
     }
-
-    if (q->front == -1)
-        q->front = 0;
-
-    q->rear++;
-    q->items[q->rear] = value;
-    printf("%d enqueued to the queue.\n", value);
 }
 
-// Dequeue (Remove) operation
+// Dequeue (Remove)
 void Dequeue(Queue *q) {
-    if (isEmpty(q)) {
-        printf("Queue is EMPTY! Cannot dequeue.\n");
-        return;
+    if(!isEmpty(q)) { // If not empty
+        int removed = q->items[q->front]; // Take front element
+        q->front++; // Move front forward
+        printf("Dequeued: %d\n", removed);
+    } else {
+        printf("Queue is Empty!, dequeue failed\n");
     }
-
-    printf("%d dequeued from the queue.\n", q->items[q->front]);
-    q->front++;
-
-    if (q->front > q->rear)
-        q->front = q->rear = -1; // Reset when queue becomes empty
 }
 
 // Peek (View front element)
-void Peek(Queue *q) {
-    if (isEmpty(q)) {
-        printf("Queue is EMPTY! No elements to peek.\n");
-        return;
+void Peek(Queue q) {
+    if(!isEmpty(&q)) { // If not empty
+        printf("Front element: %d\n", q.items[q.front]);
+    } else {
+        printf("Queue is Empty!, nothing to see here\n");
     }
-
-    printf("Front element is: %d\n", q->items[q->front]);
 }
 
 // Display all elements
-void Display(Queue *q) {
-    if (isEmpty(q)) {
-        printf("Queue is EMPTY!\n");
-        return;
+void Display(Queue q) {
+    if(!isEmpty(&q)) { // If not empty
+        printf("Queue elements: ");
+        for(int i = q.front; i < q.rear; i++) {
+            printf("%d ", q.items[i]);
+        }
+        printf("\n");
+    } else {
+        printf("Queue is Empty!, nothing to see here\n");
     }
-
-    printf("Queue elements: ");
-    for (int i = q->front; i <= q->rear; i++)
-        printf("%d ", q->items[i]);
-    printf("\n");
 }
 
 // Main function
@@ -93,12 +86,20 @@ int main() {
     Enqueue(&q, 10);
     Enqueue(&q, 20);
     Enqueue(&q, 30);
-    Display(&q);
-    Peek(&q);
+    Enqueue(&q, 40);
+    Enqueue(&q, 50);  // Queue full after this
+    Display(q);
 
     Dequeue(&q);
-    Display(&q);
-    Peek(&q);
+    Dequeue(&q);
+    Display(q);
+
+    // These will fail since linear queue doesn’t reuse freed space
+    Enqueue(&q, 60);
+    Enqueue(&q, 70);
+    Display(q);
+
+    Peek(q);
 
     return 0;
 }
